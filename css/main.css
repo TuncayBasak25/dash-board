@@ -1,0 +1,31 @@
+
+#head_bar
+{
+  width: 100%;
+  --headBarHeight: 50px;
+  height: var(--headBarHeight);
+
+  position: fixed;
+  z-index: 100;
+
+  background-color: purple;
+}
+
+#main_section
+{
+  padding-top: var(--headBarHeight);
+}
+
+#side_bar
+{
+  height: 500px;
+
+  background-color: blue;
+}
+
+#main_board
+{
+  height: 800px;
+
+  background-color: red;
+}

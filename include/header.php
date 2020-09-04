@@ -16,4 +16,4 @@ require_once 'include/class_auto_loader.php';
   <link rel='stylesheet' href='css/main.css'>
   <title>Dash Board</title>
 </head>
-<body onresize="ratioSetter()" style='user-select: none'>
+<body>
