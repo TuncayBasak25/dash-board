@@ -21,7 +21,10 @@ class SessionController
 
     $_SESSION['user_id'] = $user_id;
 
-    $response['html'] = NavbarView::user_nav_section();
+    ob_start();
+    HeaderView::connected();
+    $response['header_section'] = ob_get_contents();
+    ob_clean();
 
     return $response;
   }
@@ -33,7 +36,10 @@ class SessionController
     $_SESSION = [];
     session_destroy();
 
-    $response['html'] = NavbarView::user_nav_section();
+    ob_start();
+    HeaderView::disconnected();
+    $response['header_section'] = ob_get_contents();
+    ob_clean();
 
     return $response;
   }

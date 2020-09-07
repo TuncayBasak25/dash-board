@@ -2,31 +2,29 @@
 
 class HomePageView
 {
-  public static function display($output_buffering = TRUE)
+  public static function display()
   {
-    if ($output_buffering === TRUE) ob_start();
-
     ?>
-      <section id="head_bar">
+      <section id="header_section" class="d-flex justify-content-between">
         <?php
-        NavbarView::display(false);
+        if (isset($_SESSION['username']) === TRUE && empty($_SESSION['username']) === FALSE)
+        {
+          HeaderView::connected();
+        }
+        else
+        {
+          HeaderView::disconnected();
+        }
         ?>
       </section>
-      <section id="main_section" class="d-flex">
-        <section id="side_bar" class="col-2">
-          <?php SideBarView::display(); ?>
+      <div id="main_container" class="d-flex">
+        <section id="menu_section" class="col-2">
+          <?php MenuView::acceuil(); ?>
         </section>
-        <section id="main_board" class="col-10">
-          <?php MainBoardView::display(); ?>
+        <section id="main_section" class="col-10">
+          <?php MainView::acceuil(); ?>
         </section>
-      </section>
+      </div>
     <?php
-
-    if ($output_buffering === TRUE)
-    {
-      $html = ob_get_contents();
-      ob_clean();
-      return $html;
-    }
   }
 }

@@ -1,5 +1,5 @@
 
-#head_bar
+#header_section
 {
   width: 100%;
   --headBarHeight: 50px;
@@ -11,19 +11,19 @@
   background-color: purple;
 }
 
-#main_section
+#main_container
 {
   padding-top: var(--headBarHeight);
 }
 
-#side_bar
+#menu_section
 {
   height: 500px;
 
   background-color: blue;
 }
 
-#main_board
+#main_section
 {
   height: 800px;
 
