@@ -28,4 +28,12 @@ class FormView
     <input class="h-75 mr-1 ml-1" form="signup_form" type="submit" name="request" value="signup">
     <?php
   }
+
+  public static function acceuil_form()
+  {
+    ?>
+    <form id="acceuil_form" class="d-none" onsubmit="formSubmit(this, mainSectionResponse)" method="post"></form>
+    <input class="mr-1 ml-1" form="acceuil_form" type="submit" name="request" value="acceuil">
+    <?php
+  }
 }

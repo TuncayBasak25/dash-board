@@ -1,4 +1,4 @@
-function logoutResponse() {console.log(this.response);
+function logoutResponse() {
   if (this.response.charAt(0) !== '{')
   {
     errorLog(this.response);

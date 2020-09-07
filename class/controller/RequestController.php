@@ -13,6 +13,21 @@ class RequestController
     else if ($request === 'logout') {
       $response = SessionController::logout();
     }
+    else if (substr($request, 0, 14) === "product_detail")
+    {
+      $ref = substr($request, 16);
+      ob_start();
+      MainView::detail();
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
+    else if ($request === 'acceuil')
+    {
+      ob_start();
+      MainView::acceuil();
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
 
 
     // Une fois la requete executé
