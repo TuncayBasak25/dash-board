@@ -5,7 +5,7 @@ include "include/header.php";
 
 
 
-RequestController::execute('first_load', null);
+RequestController::execute('first_load');
 
 
 
