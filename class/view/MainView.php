@@ -24,12 +24,12 @@ class MainView
 
   }
 
-  public static function detail()
+  public static function detail($reference)
   {
     ?>
     <div id="detail_view" class="w-100">
       <?php
-      ProductView::detail();
+      ProductView::detail($reference);
        ?>
     </div>
     <?php

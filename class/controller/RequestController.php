@@ -2,22 +2,23 @@
 
 class RequestController
 {
-  public static function execute($request, $inputs = false)
+  public static function execute($request, $input_list = false)
   {
     if ($request === 'first_load') {
       $response = HomePageView::display();
     }
     else if ($request === 'login') {
-      $response = SessionController::login($inputs);
+      $response = SessionController::login($input_list);
     }
     else if ($request === 'logout') {
       $response = SessionController::logout();
     }
-    else if (substr($request, 0, 14) === "product_detail")
+    else if ($request === "product_detail")
     {
-      $ref = substr($request, 16);
+      $reference = $input_list['reference'];
+
       ob_start();
-      MainView::detail();
+      MainView::detail($reference);
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }

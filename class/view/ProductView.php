@@ -4,7 +4,7 @@ class ProductView{
 
   public static function card(){
     ?>
-    <div class="card m-5" style="cursor: pointer" onclick="ajax(request('product_detail_ref'), mainSectionResponse)">
+    <div class="card m-5" style="cursor: pointer" onclick="ajax(request('product_detail', 'reference=galaxyNote20Ultra'))">
       <h6 class="card-title" style="text-align:center">Galaxy Note 20 Ultra</h6>
       <img class="w-100 card-img-top img-card" src="img/image.jpeg" height="" width="" alt="mon image" title="image"/>
       <div class="card-body">
@@ -13,7 +13,7 @@ class ProductView{
     </div>
     <?php
   }
-  public static function detail(){
+  public static function detail($reference){
     ?>
     <div class="row my-5">
       <div class="col-md">
@@ -27,7 +27,7 @@ class ProductView{
         <input type="number" name="" value="1">
         <button class="btn btn-outline-light bg-success my-2 my-sm-0 order-button"><img src="./img/buy.png"></button>
         <p>Nom du produit: Galaxy Note 20 Ultra</p>
-        <p>Référence: Reference</p>
+        <p>Référence: <?= $reference ?></p>
         <p>Catégorie: Smartphone</p>
         <p>Garantie: 1 ans</p>
       </div>
