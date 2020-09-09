@@ -9,7 +9,7 @@ function ajax(data, callBack = null, prenventDefault = false)
   xhr.send(data);
 }
 
-function formSubmit(form, callBack = null) {
+function formSubmit(form, callBack = null, preventDefault = false) {
   window.event.preventDefault();
 
   let data = request(form.id);
@@ -18,7 +18,7 @@ function formSubmit(form, callBack = null) {
 
   for (let input of inputList) data.append(input.name, input.value);
 
-  ajax(data, callBack);
+  ajax(data, callBack, preventDefault);
 
   return false;
 }

@@ -29,6 +29,10 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
+    else
+    {
+      $response = "This is an unkown request.";
+    }
 
 
     // Une fois la requete executé
