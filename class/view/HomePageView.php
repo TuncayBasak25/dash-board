@@ -24,6 +24,7 @@ class HomePageView
         <section id="main_section" class="col-10">
           <?= MainView::accueil($product_list); ?>
         </section>
+        
       </div>
     <?php
   }

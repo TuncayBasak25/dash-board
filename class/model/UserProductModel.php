@@ -39,7 +39,7 @@ class UserProductModel extends DataBaseModel
 
     $result = $this->query($sql, $owner);
 
-    return $result->fetch_all(MYSQLI_ASSOC);
+    return $result->fetch_assoc();
   }
 
   public function get_user_warrently_products($owner) //Renvoie tous les produit encore sous garanti

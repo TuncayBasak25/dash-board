@@ -35,4 +35,23 @@ class MainView
     </div>
     <?php
   }
-}
+  public static function purchase_list($product)
+  {
+    ?>
+    <div class="d-flex flex-wrap"style="justify-content:center">
+      <table class="table">
+   <thead>
+     <tr>
+       <th scope="col">Nom du produit</th>
+       <th scope="col">Référence</th>
+       <th scope="col">Garantie</th>
+       <th scope="col">Prix</th>
+     </tr>
+   </thead>
+    <?php
+       DashboardView::purchase($product);
+    ?>
+    </div>
+    <?php
+  }
+  }

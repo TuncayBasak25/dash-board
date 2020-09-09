@@ -19,7 +19,6 @@ class RequestController
       $reference = $input_list['reference'];
       $product = (new ProductModel)->get_product($reference);
       ob_start();
-      var_dump($reference);
       MainView::detail($product);
       $response['main_section'] = ob_get_contents();
       ob_clean();
@@ -36,6 +35,15 @@ class RequestController
     {
       ob_start();
       MainView::signup();
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
+    else if ($request === 'dashboard')
+    {
+      $reference = $input_list['reference'];
+      $product = (new ProductModel)->get_product($reference);
+      ob_start();
+      MainView::purchase_list($product);
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }

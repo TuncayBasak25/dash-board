@@ -34,7 +34,7 @@ class ProductModel extends DataBaseModel
 
   public function get_product($name) //Renvoie un tableau associatif de tous les produit possedé par un utilisateur
   {
-    $sql = "SELECT product_name, ref, category, owner_manual, purchase_date, price, warranty, receipt , product_image FROM $this->table WHERE product_name = ?";
+    $sql = "SELECT * FROM $this->table WHERE product_name = ?";
 
     $result = $this->query($sql, $name);
 

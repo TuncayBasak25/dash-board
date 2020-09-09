@@ -25,14 +25,19 @@ class FormView
   public static function signup_form()
   {
     ?>
-    <form id="signup_form" class="form-inline my-2 my-lg-0" onsubmit="formSubmit(this)" method="post">
-    <input class="form-control mr-sm-2" form="signup_form" type="text" name="username" placeholder="username">
-    <input class="form-control mr-sm-2" form="signup_form" type="text" name="email" placeholder="email">
-    <input class="form-control mr-sm-2" form="signup_form" type="text" name="firstname" placeholder="firstname">
-    <input class="form-control mr-sm-2" form="signup_form" type="password" name="password" placeholder="password">
-    <input class="form-control mr-sm-2" form="signup_form" type="password" name="password_repeat" placeholder="password repeat">
-    <button class="btn btn-outline-light my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
-    <p id="signup_error" class="d-inline text-white"></p>
+    <form id="signup_form" class=" my-2 my-lg-0" onsubmit="formSubmit(this)" method="post">
+      <p>Nom d'utilisateur :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="username" placeholder="username">
+      <p>Adresse email :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="email" placeholder="email">
+      <p>Prénom :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="firstname" placeholder="firstname">
+      <p>Mot de passe :</p>
+      <input class="mr-sm-2" form="signup_form" type="password" name="password" placeholder="password">
+      <p>Confirmer mod de passe :</p>
+      <input class="mr-sm-2" form="signup_form" type="password" name="password_repeat" placeholder="password repeat">
+      <button class="btn btn-outline-light my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
+      <p id="signup_error" class="d-inline text-white"></p>
     </form>
     <?php
   }
