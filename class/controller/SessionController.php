@@ -7,9 +7,6 @@ class SessionController
     if (isset($inputs['user_id']) === TRUE) $user_id = $inputs['user_id'];
     if (isset($inputs['password']) === TRUE) $password = $inputs['password'];
 
-    $response['html'] = '';
-    $response['error'] = '';
-
     if (isset($user_id) === FALSE || empty($user_id) === TRUE) {
       $response['error'] .= "User id is missing or empty.";
       return $response;
@@ -22,8 +19,8 @@ class SessionController
     $_SESSION['user_id'] = $user_id;
 
     ob_start();
-    HeaderView::connected();
-    $response['header_section'] = ob_get_contents();
+    NavBarView::connected();
+    $response['navbar_section'] = ob_get_contents();
     ob_clean();
 
     return $response;
@@ -37,8 +34,8 @@ class SessionController
     session_destroy();
 
     ob_start();
-    HeaderView::disconnected();
-    $response['header_section'] = ob_get_contents();
+    NavBarView::disconnected();
+    $response['navbar_section'] = ob_get_contents();
     ob_clean();
 
     return $response;

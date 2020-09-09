@@ -5,7 +5,8 @@ class RequestController
   public static function execute($request, $input_list = false)
   {
     if ($request === 'first_load') {
-      $response = HomePageView::display();
+      $product_list = (new ProductModel)->get_all_product();
+      $response = HomePageView::display($product_list);
     }
     else if ($request === 'login') {
       $response = SessionController::login($input_list);
@@ -16,20 +17,31 @@ class RequestController
     else if ($request === "product_detail")
     {
       $reference = $input_list['reference'];
-
+      $product = (new ProductModel)->get_product($reference);
       ob_start();
-      MainView::detail($reference);
+      var_dump($reference);
+      MainView::detail($product);
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
-    else if ($request === 'acceuil')
+    else if ($request === 'accueil')
+    {
+      $product_list = (new ProductModel)->get_all_product();
+      ob_start();
+      MainView::accueil($product_list);
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
+    else if ($request === 'signup_page')
     {
       ob_start();
-      MainView::acceuil();
+      MainView::signup();
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
-
+    else {
+      $response = 'there is no request.';
+    }
 
     // Une fois la requete executé
     if ($request !== 'first_load') {

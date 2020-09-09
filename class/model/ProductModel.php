@@ -1,45 +1,54 @@
 <?php
 
-class UserProductModel extends DataBaseModel
+class ProductModel extends DataBaseModel
 {
 
   public function __construct()
   {
-    $this->table = "user_product";
+    $this->table = "product";
     $this->table_columns = "(
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-
-      name VARCHAR(30) NOT NULL,
-
-      price INT,
-
-      description TEXT,
-
-      warrent_time INT,
-
-      photo MEDIUMBLOB,
-      is_default_photo CHAR(5) DEFAULT 'true'
+      product_name VARCHAR(30) NOT NULL,
+      ref VARCHAR(60) NOT NULL,
+      category VARCHAR(60) NOT NULL,
+      owner_manual TEXT,
+      purchase_date INT NOT NULL,
+      price INT NOT NULL,
+      warranty INT,
+      receipt TEXT,
+      product_image MEDIUMBLOB
     )";
+
 
     $this->init_data_base();
   }
 
-  public function add_product($name, $price, $description, $warrent_time = 1000)
+  public function add_product($name, $ref, $category, $owner, $purchase_date, $price, $warrenty, $receipt , $image)
   {
-    $sql = "INSERT INTO $this->table (name, price, description, warrent_time) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO $this->table (name, ref, category, owner, purchase_date, price, warrenty, receipt , image) VALUES (?,?,?,?,?,?,?,?,?)";
 
-    $result = $this->query($sql, $name, $price, $description, $warrent_time);
+    $result = $this->query($sql, $name, $ref, $category, $owner, $purchase_date, $price, $warrenty, $receipt , $image);
 
     return $result;
   }
 
   public function get_product($name) //Renvoie un tableau associatif de tous les produit possedé par un utilisateur
   {
-    $sql = "SELECT (id, name, price, description, warrent_time, is_default_photo) FROM $this->table WHERE name = ?";
+    $sql = "SELECT product_name, ref, category, owner_manual, purchase_date, price, warranty, receipt , product_image FROM $this->table WHERE product_name = ?";
 
     $result = $this->query($sql, $name);
 
     return $result->fetch_assoc();
+  }
+
+  public function get_all_product()
+  {
+      $sql = "SELECT * FROM $this->table";
+
+      $result = $this->query($sql);
+
+
+    return $result->fetch_all(MYSQLI_ASSOC);
   }
 
   public function get_product_photo($name)

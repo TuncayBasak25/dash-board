@@ -1,16 +1,3 @@
-
-#header_section
-{
-  width: 100%;
-  --headBarHeight: 50px;
-  height: var(--headBarHeight);
-
-  position: fixed;
-  z-index: 100;
-
-  background-color: purple;
-}
-
 #main_container
 {
   padding-top: var(--headBarHeight);
@@ -22,10 +9,24 @@
 
   background-color: blue;
 }
-
-#main_section
-{
-  height: 800px;
-
-  background-color: red;
+/* CARDS */
+.price{
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+.img-card{
+  float: left;
+    width:  250px;
+    height: 250px;
+    object-fit: scale-down;
+    align-self: center;
+}
+.product-link{
+  text-decoration-color: black;
+  color: black;
+}
+.product-link:hover{
+  text-decoration: underline;
+  color: black;
 }

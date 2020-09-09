@@ -5,11 +5,12 @@ class FormView
   public static function login_form()
   {
     ?>
-    <form id="login_form" onsubmit="formSubmit(this)" method="post"></form>
-    <input class="h-75 mr-1" form="login_form" type="text" name="user_id" placeholder="username or email">
-    <input class="h-75 mr-1" form="login_form" type="password" name="password" placeholder="password">
-    <input class="h-75 mr-1" form="login_form" type="submit" name="request" value="login">
+    <form id="login_form" class="form-inline my-2 my-lg-0" onsubmit="formSubmit(this)" method="post">
+    <input class="form-control mr-sm-2" form="login_form" type="text" name="user_id" placeholder="username or email">
+    <input class="form-control mr-sm-2" form="login_form" type="password" name="password" placeholder="password">
+    <button class="btn btn-outline-light my-2 my-sm-0" form="login_form" name="request" value="login" type="submit">Connexion</button>
     <p id="login_error" class="d-inline text-white"></p>
+    </form>
     <?php
   }
 
@@ -24,8 +25,15 @@ class FormView
   public static function signup_form()
   {
     ?>
-    <form id="signup_form" class="d-none" onsubmit="formSubmit(this)" method="post"></form>
-    <input class="h-75 mr-1 ml-1" form="signup_form" type="submit" name="request" value="signup">
+    <form id="signup_form" class="form-inline my-2 my-lg-0" onsubmit="formSubmit(this)" method="post">
+    <input class="form-control mr-sm-2" form="signup_form" type="text" name="username" placeholder="username">
+    <input class="form-control mr-sm-2" form="signup_form" type="text" name="email" placeholder="email">
+    <input class="form-control mr-sm-2" form="signup_form" type="text" name="firstname" placeholder="firstname">
+    <input class="form-control mr-sm-2" form="signup_form" type="password" name="password" placeholder="password">
+    <input class="form-control mr-sm-2" form="signup_form" type="password" name="password_repeat" placeholder="password repeat">
+    <button class="btn btn-outline-light my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
+    <p id="signup_error" class="d-inline text-white"></p>
+    </form>
     <?php
   }
 

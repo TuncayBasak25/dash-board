@@ -2,7 +2,7 @@
 
 class MenuView
 {
-  public static function acceuil()
+  public static function accueil()
   {
 
   }
