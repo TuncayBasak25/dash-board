@@ -1,27 +1,43 @@
 <?php
 
-  class SessionController {
+class SessionController
+{
+  public static function login($inputs)
+  {
+    if (isset($inputs['user_id']) === TRUE) $user_id = $inputs['user_id'];
+    if (isset($inputs['password']) === TRUE) $password = $inputs['password'];
 
-    public static function login($user_id, $password, $email)
-    {
-      $userModel = new UserModel();
-
-      $userData = $userModel->get_user($user_id);
-      if (empty($userData) === TRUE) {
-        echo "!User id is wrong.";
-        return FALSE;
-      }
-
-      if (password_verify($password, $userData['password']) === FALSE) {
-      echo "!Wrong Password.";
-      return FALSE;
+    if (isset($user_id) === FALSE || empty($user_id) === TRUE) {
+      $response['error'] .= "User id is missing or empty.";
+      return $response;
+    }
+    if (isset($password) === FALSE || empty($password) === TRUE) {
+      $response['error'] .= "password is missing or empty.";
+      return $response;
     }
 
-    public static function UserRegister($username, $email, $password){
+    $_SESSION['user_id'] = $user_id;
 
-    
+    ob_start();
+    NavBarView::connected();
+    $response['navbar_section'] = ob_get_contents();
+    ob_clean();
 
-
+    return $response;
   }
 
- ?>
+  public static function logout()
+  {
+    $response['html'] = '';
+    $response['error'] = '';
+    $_SESSION = [];
+    session_destroy();
+
+    ob_start();
+    NavBarView::disconnected();
+    $response['navbar_section'] = ob_get_contents();
+    ob_clean();
+
+    return $response;
+  }
+}

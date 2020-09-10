@@ -1,0 +1,32 @@
+#main_container
+{
+  padding-top: var(--headBarHeight);
+}
+
+#menu_section
+{
+  height: 500px;
+
+  background-color: blue;
+}
+/* CARDS */
+.price{
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+.img-card{
+  float: left;
+    width:  250px;
+    height: 250px;
+    object-fit: scale-down;
+    align-self: center;
+}
+.product-link{
+  text-decoration-color: black;
+  color: black;
+}
+.product-link:hover{
+  text-decoration: underline;
+  color: black;
+}
