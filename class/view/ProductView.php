@@ -39,4 +39,19 @@ class ProductView{
     <?php
     FormView::acceuil_form();
     }
+
+    public static function breadcrumb($product)
+    {
+      ?>
+      <div class="w-100 d-flex align-items-center" style="height: 300px; background-color: red">
+        <img src="img/image.jpeg" class="" style="object-fit: cover; width: 280px; height: 280px; margin-left: 10px;" alt="">
+        <div class="flex-grow-1 text-center d-flex align-items-center justify-content-center" style="background-color: grey; height: 280px; margin-right: 10px;">
+          <span>
+            id: <?= $product['id'] ?> <br>
+            name: <?= $product['name'] ?>
+          </span>
+        </div>
+      </div>
+      <?php
+    }
   }

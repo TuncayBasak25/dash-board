@@ -30,7 +30,7 @@ function request(requestName, rawDataList = null)
 
   if (rawDataList !== null)
   {
-    if (typeof rawDataList === 'string') rawDataList = [rawDataList];
+    if (typeof rawDataList === 'string') rawDataList = [rawDataList];console.log(rawDataList);
 
     rawDataList.forEach( rawData => data.append(rawData.split('=')[0], rawData.split('=')[1]) );
   }

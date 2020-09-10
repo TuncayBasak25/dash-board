@@ -1,11 +1,11 @@
 <?php
 
-class UserProductModel extends DataBaseModel
+class ProductModel extends DataBaseModel
 {
 
   public function __construct()
   {
-    $this->table = "user_product";
+    $this->table = "product";
     $this->table_columns = "(
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
@@ -33,13 +33,25 @@ class UserProductModel extends DataBaseModel
     return $result;
   }
 
-  public function get_product($name) //Renvoie un tableau associatif de tous les produit possedé par un utilisateur
+  public function get_product($name)
   {
     $sql = "SELECT (id, name, price, description, warrent_time, is_default_photo) FROM $this->table WHERE name = ?";
 
     $result = $this->query($sql, $name);
 
     return $result->fetch_assoc();
+  }
+
+  public function recherche($key_word, $limit, $offset)
+  {
+    $key_word = "%$key_word%";
+    $sql = "SELECT * FROM $this->table WHERE name LIKE ? LIMIT ? OFFSET ?";
+    $result['product_list'] = $this->query($sql, $key_word, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
+
+    $sql = "SELECT COUNT(*) FROM $this->table WHERE name LIKE ?";
+    $result['total_product'] = $this->query($sql, $key_word)->fetch_assoc()['COUNT(*)'];
+
+    return $result;
   }
 
   public function get_product_photo($name)

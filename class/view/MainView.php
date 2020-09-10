@@ -19,9 +19,11 @@ class MainView
     <?php
   }
 
-  public static function recherche()
+  public static function recherche($product_list = [0, 0, 0, 0])
   {
-
+    foreach ($product_list as $product) {
+      ProductView::breadcrumb($product);
+    }
   }
 
   public static function detail($reference)

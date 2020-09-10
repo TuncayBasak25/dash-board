@@ -29,6 +29,18 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
+    else if ($request === 'recherche')
+    {
+      if (isset($input_list['key_word']) === TRUE)
+      {
+        $page = 1;
+        if (isset($input_list['page']) === TRUE)
+        {
+          $page = intval($input_list['page']);
+        }
+        $response = ProductController::recherche($input_list['key_word'], $page);
+      }
+    }
     else
     {
       $response = "This is an unkown request.";
@@ -39,7 +51,7 @@ class RequestController
     if ($request !== 'first_load') {
       RequestController::responds($response);
     }
-    else
+    else if (isset($response) === TRUE)
     {
       echo $response;
     }

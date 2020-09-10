@@ -17,6 +17,9 @@ class HomePageView
         }
         ?>
       </section>
+
+      <section style="height: 50px;"></section>
+
       <div id="main_container" class="d-flex">
         <section id="menu_section" class="col-2">
           <?php MenuView::acceuil(); ?>

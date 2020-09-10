@@ -13,6 +13,16 @@ class FormView
     <?php
   }
 
+  public static function recherche_form()
+  {
+    ?>
+    <form id="recherche" onsubmit="formSubmit(this)" method="post"></form>
+    <div class="d-flex justify-content-center">
+      <input class="mx-auto w-75" form="recherche" type="text" name="key_word" placeholder="recherche">
+    <div>
+    <?php
+  }
+
   public static function logout_form()
   {
     ?>
