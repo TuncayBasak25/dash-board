@@ -19,12 +19,21 @@ class HomePageView
       </section>
       <div id="main_container" class="d-flex">
         <section id="menu_section" class="col-2">
-          <?= MenuView::accueil(); ?>
+          <?php
+          if (isset($_SESSION['username']) === TRUE && empty($_SESSION['username']) === FALSE)
+          {
+            MenuView::connected();
+          }
+          else
+          {
+            MenuView::disconnected();
+          }
+          ?>
         </section>
         <section id="main_section" class="col-10">
           <?= MainView::accueil($product_list); ?>
         </section>
-        
+
       </div>
     <?php
   }

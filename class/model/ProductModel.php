@@ -41,6 +41,15 @@ class ProductModel extends DataBaseModel
     return $result->fetch_assoc();
   }
 
+  public function get_product_category() //Renvoie un tableau associatif de tous les produit possedé par un utilisateur
+  {
+    $sql = "SELECT DISTINCT category FROM $this->table";
+
+    $result = $this->query($sql);
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
   public function get_all_product()
   {
       $sql = "SELECT * FROM $this->table";

@@ -27,16 +27,26 @@ class FormView
     ?>
     <form id="signup_form" class=" my-2 my-lg-0" onsubmit="formSubmit(this)" method="post">
       <p>Nom d'utilisateur :</p>
-      <input class="mr-sm-2" form="signup_form" type="text" name="username" placeholder="username">
+      <input class="mr-sm-2" form="signup_form" type="text" name="username" placeholder="Nom d'utilisateur">
       <p>Adresse email :</p>
-      <input class="mr-sm-2" form="signup_form" type="text" name="email" placeholder="email">
-      <p>Prénom :</p>
-      <input class="mr-sm-2" form="signup_form" type="text" name="firstname" placeholder="firstname">
+      <input class="mr-sm-2" form="signup_form" type="text" name="email" placeholder="Email">
       <p>Mot de passe :</p>
-      <input class="mr-sm-2" form="signup_form" type="password" name="password" placeholder="password">
-      <p>Confirmer mod de passe :</p>
-      <input class="mr-sm-2" form="signup_form" type="password" name="password_repeat" placeholder="password repeat">
-      <button class="btn btn-outline-light my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
+      <input class="mr-sm-2" form="signup_form" type="password" name="password" placeholder="Mot de passe">
+      <p>Confirmer mot de passe :</p>
+      <input class="mr-sm-2" form="signup_form" type="password" name="password_repeat" placeholder="Confirmation mot de passe">
+      <p>Prénom :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="firstname" placeholder="Prénom">
+      <p>Nom :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="lastname" placeholder="Nom">
+      <p>Adresse :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="adresse" placeholder="n° et adresse">
+      <p>Ville :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="city" placeholder="Ville">
+      <p>Code postal :</p>
+      <input class="mr-sm-2" form="signup_form" type="text" name="postalcode" placeholder="Code Postal">
+      <br>
+      <br>
+      <button class="btn btn-outline-success my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
       <p id="signup_error" class="d-inline text-white"></p>
     </form>
     <?php

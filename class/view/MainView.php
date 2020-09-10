@@ -38,6 +38,7 @@ class MainView
   public static function purchase_list($product)
   {
     ?>
+    <h3>Mes achats</h3>
     <div class="d-flex flex-wrap"style="justify-content:center">
       <table class="table">
    <thead>

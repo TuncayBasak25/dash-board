@@ -23,6 +23,10 @@ class SessionController
     $response['navbar_section'] = ob_get_contents();
     ob_clean();
 
+    ob_start();
+    MenuView::connected();
+    $response['menu_section'] = ob_get_contents();
+    ob_clean();
     return $response;
   }
 
@@ -38,6 +42,12 @@ class SessionController
     $response['navbar_section'] = ob_get_contents();
     ob_clean();
 
+    ob_start();
+    MenuView::disconnected();
+    $response['menu_section'] = ob_get_contents();
+    ob_clean();
+
     return $response;
+
   }
 }

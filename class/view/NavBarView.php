@@ -12,7 +12,7 @@ class NavBarView{
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-          <a class="nav-link" onclick="ajax(request('dashboard', 'reference=Huawei p30'))">  Mon compte</a>
+          <a class="nav-link" style="cursor:pointer" onclick="ajax(request('dashboard', 'reference=Huawei p30'))">  Mon compte</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Deconnexion</a>

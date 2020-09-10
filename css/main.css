@@ -2,12 +2,30 @@
 {
   padding-top: var(--headBarHeight);
 }
-
-#menu_section
-{
-  height: 500px;
-
-  background-color: blue;
+/*SIDEBAR*/
+#menu_section{
+  margin-top: 1rem;
+}
+.sidebar-item{
+  text-decoration: none;
+  color: black;
+}
+.sidebar-item:hover{
+  background-color: #28a745;
+  color: white;
+  transition: 1s;
+}
+.sidebar-item>a:hover{
+  color: white;
+  transition: 0.7s;
+}
+.not-link{
+  text-decoration: none;
+  color: black;
+}
+.not-link:hover{
+  text-decoration: none;
+  color: black;
 }
 /* CARDS */
 .price{
