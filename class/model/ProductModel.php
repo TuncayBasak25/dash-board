@@ -85,7 +85,7 @@ class ProductModel extends DataBaseModel
 
   public function delete_product($name)
   {
-    $sql = "DELETE FROM $this->table WHERE name = ?";
+    $sql = "DELETE FROM $this->table WHERE product_name = ?";
 
     $result = $this->query($sql, $name);
 

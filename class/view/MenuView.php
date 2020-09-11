@@ -5,6 +5,7 @@ class MenuView
   public static function disconnected()
   {
     ?>
+<<<<<<< HEAD
     <ul class="nav flex-sm-column">
       <li class="nav-item">
         <a style="cursor:default" class="nav-link not-link" href="#">
@@ -81,5 +82,9 @@ class MenuView
               </li>
             </ul>
           <?php
+=======
+    <button onClick="ajax(request('test'))" type="button" class="btn btn-success"></button>
+    <?php
+>>>>>>> 70aca691ccacf0222f82324c236c9fa8f3eaa9da
   }
 }

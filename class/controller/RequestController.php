@@ -38,6 +38,7 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
+<<<<<<< HEAD
     else if ($request === 'dashboard')
     {
       $reference = $input_list['reference'];
@@ -47,6 +48,28 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
+=======
+    else if ($request === 'test')
+    {
+      $product_list = (new ProductModel)->get_all_product();
+      ob_start();
+      ShoppingCartView::display_basket($product_list);
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
+
+    else if ($request === 'supprimer_article') {
+      $reference = $input_list['reference'];
+      ob_start();
+      (new ProductModel)->delete_product($reference);
+      $product_list = (new ProductModel)->get_all_product();
+      ShoppingCartView::display_basket($product_list);
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+
+    }
+
+>>>>>>> 70aca691ccacf0222f82324c236c9fa8f3eaa9da
     else {
       $response = 'there is no request.';
     }
