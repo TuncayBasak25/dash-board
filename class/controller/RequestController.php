@@ -66,6 +66,12 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
+    else if ($request === 'signup') {
+      ob_start();
+      UserController::signup($_POST['username'], $_POST['password'], $_POST['password_repeat'], $_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['adress'], $_POST['city'], $_POST['postalcode']);
+      $response['main_section'] = ob_get_contents();
+      ob_clean();
+    }
 
     else {
       $response = 'there is no request.';

@@ -5,6 +5,7 @@ class UserController{
   public static function signup($username, $password, $password_repeat, $email, $firstname, $lastname, $adress, $city, $postalcode){
 
     $userModel = new UserModel();
+    $userModel->add_user($username, $email, $password, $firstname, $lastname, $adress,$city, $postalcode);
 
     //USERNAME
     if (empty($username) === TRUE) {
@@ -18,8 +19,8 @@ class UserController{
     }
 
     if (strlen($username) > 30) {
-      echo "Le nom d'utilisateur comporte un trop grand nombre de caractères. Veullez entrer moins de 30 caractères"
-      return FALSE
+      echo "Le nom d'utilisateur comporte un trop grand nombre de caractères. Veullez entrer moins de 30 caractères";
+      return FALSE;
     }
 
     $allowed = ["_", "-"];
@@ -29,7 +30,7 @@ class UserController{
     }
 
     if (!empty($userModel->get_user($username)) === TRUE) {
-      echo "Le nom d'utilisateur est déjà utilisé. Veuillez choisir un autre nom d'utilisateur."
+      echo "Le nom d'utilisateur est déjà utilisé. Veuillez choisir un autre nom d'utilisateur.";
       return FALSE;
     }
 
@@ -64,13 +65,9 @@ class UserController{
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) === TRUE){
-      echo "L'adresse mail saisie n'est pas valide."
+      echo "L'adresse mail saisie n'est pas valide.";
     }
 
-    if (!empty($email) === TRUE) {
-      echo "L'adresse mail saisie est déjà utilisée.";
-      return FALSE;
-    }
 
     //FIRSTNAME
     if (empty($firstname) === TRUE) {
@@ -84,7 +81,7 @@ class UserController{
     }
 
     if (strlen($firstname) > 30) {
-      echo "Le champ prénom ne peux contenir plus de 30 caractères."
+      echo "Le champ prénom ne peux contenir plus de 30 caractères.";
     }
 
     //LASTNAME
@@ -144,5 +141,6 @@ class UserController{
 
     return TRUE;
 
+    var_dump($_POST['username']);
   }
 }

@@ -39,14 +39,14 @@ class FormView
       <p>Nom :</p>
       <input class="mr-sm-2" form="signup_form" type="text" name="lastname" placeholder="Nom">
       <p>Adresse :</p>
-      <input class="mr-sm-2" form="signup_form" type="text" name="adresse" placeholder="n° et adresse">
+      <input class="mr-sm-2" form="signup_form" type="text" name="adress" placeholder="n° et adresse">
       <p>Ville :</p>
       <input class="mr-sm-2" form="signup_form" type="text" name="city" placeholder="Ville">
       <p>Code postal :</p>
       <input class="mr-sm-2" form="signup_form" type="text" name="postalcode" placeholder="Code Postal">
       <br>
       <br>
-      <button class="btn btn-outline-success my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit">S'enregistrer</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" form="signup_form" name="request" value="signup" type="submit"onclick="ajax(request('signup'))">S'enregistrer</button>
       <p id="signup_error" class="d-inline text-white"></p>
     </form>
     <?php

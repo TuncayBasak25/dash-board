@@ -15,25 +15,21 @@ class UserModel extends DataBaseModel
       firstname VARCHAR(30),
       lastname VARCHAR(30),
       numero VARCHAR(10),
-      adresse TEXT,
-
-      signup_date INT NOT NULL,
-      login_date INT,
-      confirmed CHAR(5) DEFAULT 'false',
-
-      log_id INT
+      adress TEXT,
+      city VARCHAR(100),
+      postalcode INT(5)
     )";
 
     $this->init_data_base();
   }
 
-  public function add_user($username, $email, $password)
+  public function add_user($username, $email, $password, $firstname, $lastname, $adress, $city, $postalcode)
   {
     $signup_date = time();
 
-    $sql = "INSERT INTO $this->table (username, email, password, signup_date) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO $this->table (username, email, password, firstname, lastname, adress,city, postalcode) VALUES (?,?,?,?,?,?,?,?)";
 
-    $result = $this->query($sql, $username, $email, $password, $signup_date);
+    $result = $this->query($sql, $username, $email, $password, $firstname, $lastname, $adress, $city, $postalcode);
 
     return $result;
   }

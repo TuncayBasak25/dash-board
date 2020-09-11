@@ -10,8 +10,4 @@ RequestController::execute('first_load');
 
 
 
-
-
-
-
 include "include/footer.php";
