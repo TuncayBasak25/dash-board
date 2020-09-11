@@ -18,7 +18,7 @@ class FormView
   {
     ?>
     <form id="logout_form" class="d-none" onsubmit="formSubmit(this)" method="post"></form>
-    <input class="h-75" form="logout_form" type="submit" name="request" value="logout">
+    <input class="btn btn-outline-light my-2 my-sm-0" form="logout_form" type="submit" name="request" value="logout">
     <?php
   }
 

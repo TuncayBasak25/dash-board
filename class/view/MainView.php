@@ -35,7 +35,7 @@ class MainView
     </div>
     <?php
   }
-  public static function purchase_list($product)
+  public static function purchase_list($product_list)
   {
     ?>
     <h3>Mes achats</h3>
@@ -50,7 +50,8 @@ class MainView
      </tr>
    </thead>
     <?php
-       DashboardView::purchase($product);
+
+       DashboardView::purchase($product_list);
     ?>
     </div>
     <?php

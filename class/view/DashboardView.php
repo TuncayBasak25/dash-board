@@ -1,7 +1,8 @@
  <?php
 
  class DashboardView{
-   public static function purchase($product){
+   public static function purchase($product_list){
+     foreach ($product_list as $product) {
      ?>
     <tbody>
       <tr>
@@ -10,6 +11,7 @@
         <td><?= $product['id'] ?></td>
         <td><?= $product['price'] ?></td>
       </tr>
+    <?php } ?>
     </tbody>
   </table>
 

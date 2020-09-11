@@ -38,17 +38,16 @@ class RequestController
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
-<<<<<<< HEAD
     else if ($request === 'dashboard')
     {
-      $reference = $input_list['reference'];
-      $product = (new ProductModel)->get_product($reference);
+      // $reference = $input_list['reference'];
+      $product_list = (new ProductModel)->get_all_product();
       ob_start();
-      MainView::purchase_list($product);
+      MainView::purchase_list($product_list);
       $response['main_section'] = ob_get_contents();
       ob_clean();
     }
-=======
+
     else if ($request === 'test')
     {
       $product_list = (new ProductModel)->get_all_product();
@@ -66,10 +65,8 @@ class RequestController
       ShoppingCartView::display_basket($product_list);
       $response['main_section'] = ob_get_contents();
       ob_clean();
-
     }
 
->>>>>>> 70aca691ccacf0222f82324c236c9fa8f3eaa9da
     else {
       $response = 'there is no request.';
     }
