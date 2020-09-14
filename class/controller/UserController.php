@@ -29,7 +29,7 @@ class UserController{
       echo "Le nom d'utilisateur ne peut comporter que les caractères spéciaux suivant: " . '"-" ou "_".';
     }
 
-    if (!empty($userModel->get_user($username)) === TRUE) {
+    if ($username === $userModel->get_user($username)) {
       echo "Le nom d'utilisateur est déjà utilisé. Veuillez choisir un autre nom d'utilisateur.";
       return FALSE;
     }
@@ -67,7 +67,6 @@ class UserController{
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) === TRUE){
       echo "L'adresse mail saisie n'est pas valide.";
     }
-
 
     //FIRSTNAME
     if (empty($firstname) === TRUE) {

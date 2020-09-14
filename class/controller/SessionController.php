@@ -4,6 +4,7 @@ class SessionController
 {
   public static function login($inputs)
   {
+
     if (isset($inputs['user_id']) === TRUE) $user_id = $inputs['user_id'];
     if (isset($inputs['password']) === TRUE) $password = $inputs['password'];
 
