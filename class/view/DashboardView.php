@@ -11,13 +11,13 @@
         <td><?= $product['id'] ?></td>
         <td><?= $product['price'] ?></td>
       </tr>
-    <?php } ?>
+    <?php
+    $data[] = $product['price'];
+    }
+    ?>
     </tbody>
   </table>
-
-
-
-
+  <canvas id="myChart" width="400px" height="400px"></canvas>
      <?php
    }
  }
