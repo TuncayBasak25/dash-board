@@ -9,6 +9,8 @@ class ProductModel extends DataBaseModel
     $this->table_columns = "(
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
+      owner TEXT NOT NULL,
+
       name TEXT NOT NULL,
       reference TEXT NOT NULL,
       category TEXT NOT NULL,
@@ -26,13 +28,22 @@ class ProductModel extends DataBaseModel
     $this->init_data_base();
   }
 
-  public function add_product($name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual = '')
+  public function add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual = '')
   {
-    $sql = "INSERT INTO $this->table (name, reference, price, purchase_type, purchase_adress, purchase_url, purchase_date, warrant_limit, manual) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO $this->table (owner, name, reference, price, purchase_type, purchase_adress, purchase_url, purchase_date, warrant_limit, manual) VALUES (?,?,?,?,?,?,?,?,?)";
 
-    $result = $this->query($sql, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual);
+    $result = $this->query($sql, $owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual);
 
     return $result;
+  }
+
+  public function get_all_product($limit, $offset)
+  {
+    $sql = "SELECT * FROM $this->table LIMIT ? OFFSET ?";
+
+    $result = $this->query($sql, $limit, $offset);
+
+    return $result->fetch_all(MYSQLI_ASSOC);
   }
 
   public function get_product_by($column_name, $column_value)

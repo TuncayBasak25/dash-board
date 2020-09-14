@@ -21,19 +21,15 @@ class UserModel extends DataBaseModel
 
   public function add_user($username, $email, $password)
   {
-    $signup_date = time();
-
     $sql = "INSERT INTO $this->table (username, email, password) VALUES (?,?,?)";
 
-    $result = $this->query($sql, $username, $email, $password, $signup_date);
+    $result = $this->query($sql, $username, $email, $password);
 
     return $result;
   }
 
   public function log_user($username)
   {
-    $signup_date = time();
-
     $sql = "UPDATE $this->table SET session_id = ? WHERE username = ?";
 
     $result = $this->query($sql, session_id(), $username);
@@ -43,8 +39,6 @@ class UserModel extends DataBaseModel
 
   public function logout_user()
   {
-    $signup_date = time();
-
     $sql = "UPDATE $this->table SET session_id = NULL WHERE session_id = ?";
 
     $result = $this->query($sql, session_id());
@@ -54,13 +48,11 @@ class UserModel extends DataBaseModel
 
   public function get_logged_user()
   {
-    $signup_date = time();
-
-    $sql = "SELECT FROM $this->table WHERE session_id = ?";
+    $sql = "SELECT * FROM $this->table WHERE session_id = ?";
 
     $result = $this->query($sql, session_id());
 
-    return $result;
+    return $result->fetch_assoc();
   }
 
   public function get_user($username_or_email)
