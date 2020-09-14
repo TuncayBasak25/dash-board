@@ -24,7 +24,7 @@ class HomePageView
         <section id="menu_section" class="col-2">
           <?php MenuView::acceuil(); ?>
         </section>
-        <section id="main_section" class="col-10">
+        <section id="main_section" onscroll="autoLoadOnScroll(this)" class="col-10">
           <?php MainView::acceuil(); ?>
         </section>
       </div>

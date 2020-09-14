@@ -25,7 +25,9 @@
 
 #main_section
 {
+  overflow: scroll;
 
+  height: calc(100vh - 50px);
 
   background-color: red;
 }
