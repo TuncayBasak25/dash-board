@@ -19,6 +19,8 @@ function RandomString($length)
 $user = (new UserModel)->get_logged_user();
 
 $productModel = new ProductModel();
+
+$productModel->reset();
 for($i=0; $i<50; $i++)
 {
   $owner = $user['username'];
@@ -41,8 +43,9 @@ for($i=0; $i<50; $i++)
     $purchase_url = "";
   }
 
-  $purchase_date = date('d.m.y');
-  $warrant_limit = date('d.m.y', time() + rand(50000, 500000));
+  $purchase_date = date('Y-m-d H:i:s');
+
+  $warrant_limit = date('Y-m-d H:i:s', time() + rand(500000, 5000000));
 
   if (rand(0, 1) === 0)
   {

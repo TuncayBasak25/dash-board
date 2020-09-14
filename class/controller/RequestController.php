@@ -13,8 +13,9 @@ class RequestController
       }
       else
       {
-        $product_list = (new ProductModel)->get_product_by('owner', $user['username']);
-        HomeView::display($user, $product_list);
+        $product_list = (new ProductModel)->get_all_product_of($user['username'], 20, 0);
+        $product_count = (new ProductModel)->count_all_product_of($user['username']);
+        HomeView::display($user, $product_list, $product_count);
       }
     }
     else if ($request === 'load_signup')
@@ -42,6 +43,23 @@ class RequestController
     else if ($request === 'logout')
     {
       $response = SessionController::logout($input_list);
+    }
+    else if ($request === 'product_table_page')
+    {
+      $user = (new UserModel)->get_logged_user();
+
+      $current_page = intval($input_list['page']);
+      $product_per_page = intval($input_list['max']);
+
+      $offset = ($current_page - 1) * $product_per_page;
+
+      $product_list = (new ProductModel)->get_all_product_of($user['username'], $product_per_page, $offset);
+      $product_count = (new ProductModel)->count_all_product_of($user['username']);
+
+      ob_start();
+      ProductView::table($product_list, $product_count, $current_page);
+      $response['product_table'] = ob_get_contents();
+      ob_clean();
     }
     else
     {

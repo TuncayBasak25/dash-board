@@ -39,10 +39,11 @@ class SessionController
 
     $userModel->log_user($user['username']);
 
-    $product_list = (new ProductModel)->get_product_by('owner', $user['username']);
+    $product_list = (new ProductModel)->get_all_product_of($user['username'], 20, 0);
+    $product_count = (new ProductModel)->count_all_product_of($user['username']);
 
     ob_start();
-    HomeView::display($user, $product_list);
+    HomeView::display($user, $product_list, $product_count);
     $response['body'] = ob_get_contents();
     ob_clean();
 

@@ -19,8 +19,8 @@ class ProductModel extends DataBaseModel
       purchase_type ENUM('web', 'physic'),
       purchase_adress TEXT,
       purchase_url TEXT,
-      purchase_date DATE NOT NULL,
-      warrant_limit DATE NOT NULL,
+      purchase_date DATETIME NOT NULL,
+      warrant_limit DATETIME NOT NULL,
 
       manual TEXT
     )";
@@ -42,8 +42,15 @@ class ProductModel extends DataBaseModel
     $sql = "SELECT * FROM $this->table WHERE owner = ? LIMIT ? OFFSET ?";
     $product_list = $this->query($sql, $owner, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
 
+    return $product_list;
+  }
+
+  public function count_all_product_of($owner)
+  {
     $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ?";
-    $product_count = $this->query($sql, $owner)->fetch_assoc()['COUNT(*)']
+    $product_count = $this->query($sql, $owner)->fetch_assoc()['COUNT(*)'];
+
+    return $product_count;
   }
 
   public function get_product_by($column_name, $column_value)
@@ -74,5 +81,10 @@ class ProductModel extends DataBaseModel
     $result = $this->query($sql, $column_value);
 
     return $result;
+  }
+
+  public function reset()
+  {
+    $this->resetTable();
   }
 }
