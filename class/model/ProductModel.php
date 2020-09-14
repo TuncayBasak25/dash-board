@@ -37,9 +37,15 @@ class ProductModel extends DataBaseModel
     return $result;
   }
 
-  public function get_all_product_of($owner, $limit, $offset)
+  public function get_all_product_of($owner, $limit, $offset, $order = false)
   {
-    $sql = "SELECT * FROM $this->table WHERE owner = ? LIMIT ? OFFSET ?";
+    $order_sql = "";
+    if ($order !== FALSE && $order !== 'none')
+    {
+      $order_sql = "ORDER BY $order";
+    }
+
+    $sql = "SELECT * FROM $this->table WHERE owner = ? $order_sql LIMIT ? OFFSET ?";
     $product_list = $this->query($sql, $owner, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
 
     return $product_list;

@@ -41,9 +41,10 @@ class SessionController
 
     $product_list = (new ProductModel)->get_all_product_of($user['username'], 20, 0);
     $product_count = (new ProductModel)->count_all_product_of($user['username']);
+    $order = 'none';
 
     ob_start();
-    HomeView::display($user, $product_list, $product_count);
+    HomeView::display($user, $product_list, $product_count, $order);
     $response['body'] = ob_get_contents();
     ob_clean();
 

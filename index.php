@@ -18,45 +18,48 @@ function RandomString($length)
 
 $user = (new UserModel)->get_logged_user();
 
-$productModel = new ProductModel();
-
-$productModel->reset();
-for($i=0; $i<50; $i++)
+if (empty($user) === FALSE)
 {
-  $owner = $user['username'];
+  $productModel = new ProductModel();
 
-  $name = RandomString(10);
-  $reference = RandomString(10);
-  $category = RandomString(10);
-  $price = rand(10, 1500);
-
-  if (rand(0, 1) === 0)
+  $productModel->reset();
+  for($i=0; $i<50; $i++)
   {
-    $purchase_type = "web";
-    $purchase_adress = "";
-    $purchase_url = "www." . RandomString(15) . ".com";
-  }
-  else
-  {
-    $purchase_type = "physic";
-    $purchase_adress = rand(1, 40) . " rue de " . RandomString(12) . " " . rand(20000, 25000) . " " . RandomString(15);
-    $purchase_url = "";
-  }
+    $owner = $user['username'];
 
-  $purchase_date = date('Y-m-d H:i:s');
+    $name = RandomString(10);
+    $reference = RandomString(10);
+    $category = RandomString(10);
+    $price = rand(10, 1500);
 
-  $warrant_limit = date('Y-m-d H:i:s', time() + rand(500000, 5000000));
+    if (rand(0, 1) === 0)
+    {
+      $purchase_type = "web";
+      $purchase_adress = "";
+      $purchase_url = "www." . RandomString(15) . ".com";
+    }
+    else
+    {
+      $purchase_type = "physic";
+      $purchase_adress = rand(1, 40) . " rue de " . RandomString(12) . " " . rand(20000, 25000) . " " . RandomString(15);
+      $purchase_url = "";
+    }
 
-  if (rand(0, 1) === 0)
-  {
-    $manual = "Bla Bla";
+    $purchase_date = date('Y-m-d H:i:s');
+
+    $warrant_limit = date('Y-m-d H:i:s', time() + rand(500000, 5000000));
+
+    if (rand(0, 1) === 0)
+    {
+      $manual = "Bla Bla";
+    }
+    else
+    {
+      $manual = "";
+    }
+
+    $productModel->add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual);
   }
-  else
-  {
-    $manual = "";
-  }
-
-  $productModel->add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual);
 }
 
 RequestController::execute('first_load');

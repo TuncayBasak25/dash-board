@@ -7,19 +7,98 @@ class ProductView
 
   }
 
-  public static function table($product_list, $product_count, $current_page = 1, $product_per_page = 20)
+  public static function table($product_list, $product_count, $current_page, $product_per_page, $order)
   {
     ?>
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
       <thead>
         <tr>
-          <th class="th-sm">Name</th>
-          <th class="th-sm">Category</th>
-          <th class="th-sm">Price</th>
-          <th class="th-sm">Purchased at</th>
-          <th class="th-sm">Purchase date</th>
-          <th class="th-sm">Warrant limit</th>
-          <th class="th-sm">Manual</th>
+          <?php
+          if ($order === 'name')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=name DESC']))">Name</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=name']))">Name</th>
+            <?php
+          }
+          if ($order === 'category')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=category DESC']))">Category</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=category']))">Category</th>
+            <?php
+          }
+          if ($order === 'price')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=price DESC']))">Price</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=price']))">Price</th>
+            <?php
+          }
+          if ($order === 'purchase_adress')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=purchase_adress DESC']))">Purchased at</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=purchase_adress']))">Purchased at</th>
+            <?php
+          }
+          if ($order === 'purchase_date')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=purchase_date DESC']))">Purchase date</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=purchase_date']))">Purchase date</th>
+            <?php
+          }
+          if ($order === 'warrant_limit')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=warrant_limit DESC']))">Warrant limit</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=warrant_limit']))">Warrant limit</th>
+            <?php
+          }
+          if ($order === 'manual')
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=manual DESC']))">Manual</th>
+            <?php
+          }
+          else
+          {
+            ?>
+            <th class="th-sm" style="cursor: pointer" onclick="ajax(request('product_table_page', ['page=1', 'max=<?= $product_per_page ?>', 'order=manual']))">Manual</th>
+            <?php
+          }
+          ?>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +111,7 @@ class ProductView
     </table>
     <?php
 
-    ProductView::pagination($product_per_page, $product_count, $current_page);
+    ProductView::pagination($product_per_page, $product_count, $current_page, $order);
   }
 
   public static function row($product)
@@ -67,9 +146,9 @@ class ProductView
     <?php
   }
 
-  public static function pagination($product_per_page, $product_count, $current_page)
+  public static function pagination($product_per_page, $product_count, $current_page, $order)
   {
-    $last_page = ceil($product_count / $product_per_page);echo $last_page
+    $last_page = intval(ceil($product_count / $product_per_page));
     ?>
     <nav aria-label="...">
       <ul class="pagination">
@@ -86,7 +165,7 @@ class ProductView
         {
           ?>
           <li class="page-item">
-            <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $current_page - 1 ?>', 'max=<?= $product_per_page ?>']))">Previous</button>
+            <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $current_page - 1 ?>', 'max=<?= $product_per_page ?>', 'order=<?= $order ?>']))">Previous</button>
           </li>
           <?php
         }
@@ -97,7 +176,7 @@ class ProductView
           {
             ?>
             <li class="page-item">
-              <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $page ?>', 'max=<?= $product_per_page ?>']))"><?= $page ?></button>
+              <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $page ?>', 'max=<?= $product_per_page ?>', 'order=<?= $order ?>']))"><?= $page ?></button>
             </li>
             <?php
           }
@@ -123,7 +202,7 @@ class ProductView
         {
           ?>
           <li class="page-item">
-            <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $current_page + 1 ?>', 'max=<?= $product_per_page ?>']))">Next</button>
+            <button class="page-link" onclick="ajax(request('product_table_page', ['page=<?= $current_page + 1 ?>', 'max=<?= $product_per_page ?>', 'order=<?= $order ?>']))">Next</button>
           </li>
           <?php
         }
