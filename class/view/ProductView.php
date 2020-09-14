@@ -7,9 +7,33 @@ class ProductView
 
   }
 
-  public static function list_view($product)
+  public static function table($product_list)
   {
+    ?>
 
+    <div class="container">
+      <table id="product_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="th-sm">Name</th>
+            <th class="th-sm">Category</th>
+            <th class="th-sm">Price</th>
+            <th class="th-sm">Purchased at</th>
+            <th class="th-sm">Purchase date</th>
+            <th class="th-sm">Warrant limit</th>
+            <th class="th-sm">Manual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($product_list as $product) {
+            ProductView::row($product);
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+    <?php
   }
 
   public static function row($product)

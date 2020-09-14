@@ -28,22 +28,22 @@ class ProductModel extends DataBaseModel
     $this->init_data_base();
   }
 
-  public function add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual = '')
+  public function add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual = '')
   {
-    $sql = "INSERT INTO $this->table (owner, name, reference, price, purchase_type, purchase_adress, purchase_url, purchase_date, warrant_limit, manual) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO $this->table (owner, name, reference, category, price, purchase_type, purchase_adress, purchase_url, purchase_date, warrant_limit, manual) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
-    $result = $this->query($sql, $owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrent_limit, $manual);
+    $result = $this->query($sql, $owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual);
 
     return $result;
   }
 
-  public function get_all_product($limit, $offset)
+  public function get_all_product_of($owner, $limit, $offset)
   {
-    $sql = "SELECT * FROM $this->table LIMIT ? OFFSET ?";
+    $sql = "SELECT * FROM $this->table WHERE owner = ? LIMIT ? OFFSET ?";
+    $product_list = $this->query($sql, $owner, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
 
-    $result = $this->query($sql, $limit, $offset);
-
-    return $result->fetch_all(MYSQLI_ASSOC);
+    $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ?";
+    $product_count = $this->query($sql, $owner)->fetch_assoc()['COUNT(*)']
   }
 
   public function get_product_by($column_name, $column_value)

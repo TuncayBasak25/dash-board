@@ -39,7 +39,7 @@ class SessionController
 
     $userModel->log_user($user['username']);
 
-    $product_list = (new ProductModel)->get_all_product(10, 0);
+    $product_list = (new ProductModel)->get_product_by('owner', $user['username']);
 
     ob_start();
     HomeView::display($user, $product_list);

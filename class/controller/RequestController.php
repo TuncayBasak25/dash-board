@@ -13,7 +13,7 @@ class RequestController
       }
       else
       {
-        $product_list = (new ProductModel)->get_all_product(10, 0);
+        $product_list = (new ProductModel)->get_product_by('owner', $user['username']);
         HomeView::display($user, $product_list);
       }
     }
