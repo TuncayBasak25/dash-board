@@ -13,7 +13,7 @@ class RequestController
       }
       else
       {
-        $product_list = (new ProductModel)->get_all_product_of($user['username'], 20, 0);
+        $product_list = (new ProductModel)->get_all_product_of($user['username'], 10, 0);
         $product_count = (new ProductModel)->count_all_product_of($user['username']);
         $order = 'none';
         HomeView::display($user, $product_list, $product_count, $order);
@@ -48,6 +48,13 @@ class RequestController
     else if ($request === 'product_table_page')
     {
       $response = ProductTableController::display($input_list);
+    }
+    else if ($request === 'get_data')
+    {
+      $data = (new ProductModel)->fetch_column('price', 'category');
+      $response['data'] = $data;
+      $categories = (new ProductModel)->fetch_column('category');
+      $response['categories'] = $categories;
     }
     else
     {

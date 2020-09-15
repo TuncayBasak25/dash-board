@@ -168,6 +168,7 @@ class ProductView
     ProductView::pagination($product_per_page, $product_count, $current_page, $order);
     ?>
     <canvas id="myChart"></canvas>
+    <img src="image.jpg" class="d-none" onload="setTimeout(() => ajax(request('get_data'), pie), 2000)">
     <?php
   }
 

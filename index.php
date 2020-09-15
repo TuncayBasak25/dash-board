@@ -22,7 +22,7 @@ if (empty($user) === FALSE)
 {
   $productModel = new ProductModel();
 
-  $category_list = ['smartphone', 'ordinateur', 'accessoir'];
+  $category_list = ['smartphone', 'ordinateur', 'accessoir', 'cafe', 'tablette'];
 
   $productModel->reset();
   for($i=0; $i<50; $i++)

@@ -1,21 +1,40 @@
-function pie(json){
+function pie(json){console.log(json);
 
   let data = [];
-  json.data.forEach((item, i) => {
-      data.push(item.price);
+
+  let categories = [];
+
+  json.categories.forEach((item, i) => {
+    if (categories.indexOf(item.category) === -1)
+    {
+      categories.push(item.category);
+      data.push(0);
+    }
   });
 
-  let label = [];
-  json.label.forEach((item, i) => {
-      label.push(item.name);
+
+  json.data.forEach((item, i) => {
+    categories.forEach((category, i) => {
+      if (item.category === category) data[i] += item.price;
+    });
   });
-console.log(label);
+
+
+  // json.data.forEach((item, i) => {
+  //     data.push(item.price);
+  // });
+
+  // let label = ['smartphone', 'ordinateur', 'accessoir'];
+  // json.label.forEach((item, i) => {
+  //     label.push(item.category);
+  // });
+
   var ctx = document.getElementById('myChart').getContext('2d');
 
   var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-          labels: label,
+          labels: categories,
           datasets: [{
               data: data,
               backgroundColor: [

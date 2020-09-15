@@ -28,8 +28,15 @@ class ProductModel extends DataBaseModel
     $this->init_data_base();
   }
 
-  public function fetch_column($column){
-    $sql = "SELECT $column FROM $this->table";
+  public function fetch_column($column, $column2 = FALSE){
+
+    $extra_column = "";
+    if ($column2 !== FALSE)
+    {
+      $extra_column = " ,$column2";
+    }
+
+    $sql = "SELECT $column $extra_column FROM $this->table";
 
     $result = $this->query($sql);
 

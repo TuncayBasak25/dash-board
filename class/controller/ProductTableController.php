@@ -74,11 +74,7 @@ class ProductTableController
 
     $product_list = (new ProductModel)->get_all_product_of($user['username'], $product_per_page, $offset, $order, $category, $price, $purchase_type, $warrant_limit);
     $product_count = (new ProductModel)->count_all_product_of($user['username'], $category, $price, $purchase_type, $warrant_limit);
-
-    $data = (new ProductModel)->fetch_column('price');
-    $response['data'] = $data;
-    $label = (new ProductModel)->fetch_column('name');
-    $response['label'] = $label;
+    
 
     ob_start();
     ProductView::table($product_list, $product_count, $current_page, $product_per_page, $order);

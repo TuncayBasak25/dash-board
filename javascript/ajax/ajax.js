@@ -16,7 +16,7 @@ function formSubmit(form, callBack = null, preventDefault = false) {
 
   // let inputList = document.querySelectorAll("[form=" + form.id + "]");
 
-  for (let input of form) data.append(input.name, input.value);data.forEach((dat) => {console.log(dat)});
+  for (let input of form) data.append(input.name, input.value);
 
 
   ajax(data, callBack, preventDefault);

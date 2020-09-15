@@ -39,7 +39,7 @@ class SessionController
 
     $userModel->log_user($user['username']);
 
-    $product_list = (new ProductModel)->get_all_product_of($user['username'], 20, 0);
+    $product_list = (new ProductModel)->get_all_product_of($user['username'], 10, 0);
     $product_count = (new ProductModel)->count_all_product_of($user['username']);
     $order = 'none';
 
