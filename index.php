@@ -49,7 +49,7 @@ if (empty($user) === FALSE)
 
     $purchase_date = date('Y-m-d H:i:s');
 
-    $warrant_limit = date('Y-m-d H:i:s', time() + rand(500000, 5000000));
+    $warrant_limit = date('Y-m-d H:i:s', time() + rand(500000, 1095 * 24 * 3600));
 
     if (rand(0, 1) === 0)
     {
