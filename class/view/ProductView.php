@@ -7,7 +7,7 @@ class ProductView
 
   }
 
-  public static function table($product_list, $product_count, $current_page, $product_per_page, $order)
+  public static function table($product_list, $product_count, $current_page, $product_per_page, $categories, $order)
   {
     ?>
     <div class="input-group mb-3">
@@ -19,9 +19,14 @@ class ProductView
       <div class="col-3">
         <select name="category" form="product_table_page" class="custom-select">
           <option selected value="all">Category</option>
-          <option value="smartphone">Smartphone</option>
-          <option value="ordinateur">Ordinateur</option>
-          <option value="accessoir">Accessoir</option>
+          <?php
+          foreach ($categories as $category)
+          {
+            ?>
+            <option value="<?= $category['category'] ?>"><?= ucfirst($category['category']) ?></option>
+            <?php
+          }
+          ?>
         </select>
       </div>
       <div class="col-3">
@@ -167,8 +172,7 @@ class ProductView
 
     ProductView::pagination($product_per_page, $product_count, $current_page, $order);
     ?>
-    <canvas id="myChart"></canvas>
-    <img src="image.jpg" class="d-none" onload="setTimeout(() => ajax(request('get_data'), pie), 2000)">
+
     <?php
   }
 

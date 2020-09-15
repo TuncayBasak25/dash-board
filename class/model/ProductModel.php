@@ -28,19 +28,28 @@ class ProductModel extends DataBaseModel
     $this->init_data_base();
   }
 
-  public function fetch_column($column, $column2 = FALSE){
-
+  public function fetch_column($owner, $column, $column2 = FALSE)
+  {
     $extra_column = "";
     if ($column2 !== FALSE)
     {
       $extra_column = " ,$column2";
     }
 
-    $sql = "SELECT $column $extra_column FROM $this->table";
+    $sql = "SELECT $column $extra_column FROM $this->table WHERE owner = ?";
 
-    $result = $this->query($sql);
+    $result = $this->query($sql, $owner);
 
-  return $result->fetch_all(MYSQLI_ASSOC);
+    return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
+  public function fetch_column_distinct($owner, $column)
+  {
+    $sql = "SELECT DISTINCT $column FROM $this->table WHERE owner = ?";
+
+    $result = $this->query($sql, $owner);
+
+    return $result->fetch_all(MYSQLI_ASSOC);
   }
 
   public function add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual = '')

@@ -43,8 +43,10 @@ class SessionController
     $product_count = (new ProductModel)->count_all_product_of($user['username']);
     $order = 'none';
 
+    $categories = (new ProductModel)->fetch_column_distinct($user['username'], 'category');
+
     ob_start();
-    HomeView::display($user, $product_list, $product_count, $order);
+    HomeView::display($user, $product_list, $product_count, $categories, $order);
     $response['body'] = ob_get_contents();
     ob_clean();
 

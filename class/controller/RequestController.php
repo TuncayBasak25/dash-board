@@ -16,7 +16,11 @@ class RequestController
         $product_list = (new ProductModel)->get_all_product_of($user['username'], 10, 0);
         $product_count = (new ProductModel)->count_all_product_of($user['username']);
         $order = 'none';
-        HomeView::display($user, $product_list, $product_count, $order);
+
+        $user = (new UserModel)->get_logged_user();
+        $categories = (new ProductModel)->fetch_column_distinct($user['username'], 'category');
+
+        HomeView::display($user, $product_list, $product_count, $categories, $order);
       }
     }
     else if ($request === 'load_signup')
@@ -51,9 +55,11 @@ class RequestController
     }
     else if ($request === 'get_data')
     {
-      $data = (new ProductModel)->fetch_column('price', 'category');
+      $user = (new UserModel)->get_logged_user();
+
+      $data = (new ProductModel)->fetch_column($user['username'], 'price', 'category');
       $response['data'] = $data;
-      $categories = (new ProductModel)->fetch_column('category');
+      $categories = (new ProductModel)->fetch_column($user['username'], 'category');
       $response['categories'] = $categories;
     }
     else

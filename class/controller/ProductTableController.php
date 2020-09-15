@@ -28,7 +28,7 @@ class ProductTableController
     }
 
     $category = 'all';
-    if (isset($input_list['category']) === TRUE && $input_list['category'] !== 'all')
+    if (isset($input_list['category']) === TRUE)
     {
       $category = $input_list['category'];
       $_SESSION['category'] = $category;
@@ -39,7 +39,7 @@ class ProductTableController
     }
 
     $price = 'all';
-    if (isset($input_list['price']) === TRUE && $input_list['price'] !== 'all')
+    if (isset($input_list['price']) === TRUE)
     {
       $price = $input_list['price'];
       $_SESSION['price'] = $price;
@@ -50,7 +50,7 @@ class ProductTableController
     }
 
     $purchase_type = 'all';
-    if (isset($input_list['purchase_type']) === TRUE && $input_list['purchase_type'] !== 'all')
+    if (isset($input_list['purchase_type']) === TRUE)
     {
       $purchase_type = $input_list['purchase_type'];
       $_SESSION['purchase_type'] = $purchase_type;
@@ -61,7 +61,7 @@ class ProductTableController
     }
 
     $warrant_limit = 'all';
-    if (isset($input_list['warrant_limit']) === TRUE && $input_list['warrant_limit'] !== 'all')
+    if (isset($input_list['warrant_limit']) === TRUE)
     {
       $warrant_limit = $input_list['warrant_limit'];
       $_SESSION['warrant_limit'] = $warrant_limit;
@@ -74,10 +74,10 @@ class ProductTableController
 
     $product_list = (new ProductModel)->get_all_product_of($user['username'], $product_per_page, $offset, $order, $category, $price, $purchase_type, $warrant_limit);
     $product_count = (new ProductModel)->count_all_product_of($user['username'], $category, $price, $purchase_type, $warrant_limit);
-    
+    $categories = (new ProductModel)->fetch_column_distinct($user['username'], 'category');
 
     ob_start();
-    ProductView::table($product_list, $product_count, $current_page, $product_per_page, $order);
+    ProductView::table($product_list, $product_count, $current_page, $product_per_page, $categories, $order);
     $response['product_table'] = ob_get_contents();
     ob_clean();
 
