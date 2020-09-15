@@ -12,11 +12,12 @@ function ajax(data, callBack = null, prenventDefault = false)
 function formSubmit(form, callBack = null, preventDefault = false) {
   window.event.preventDefault();
 
-  let data = request(form.id);console.log('test');
+  let data = request(form.id);
 
   // let inputList = document.querySelectorAll("[form=" + form.id + "]");
 
-  for (let input of form) data.append(input.name, input.value);
+  for (let input of form) data.append(input.name, input.value);data.forEach((dat) => {console.log(dat)});
+
 
   ajax(data, callBack, preventDefault);
 

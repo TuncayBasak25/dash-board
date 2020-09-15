@@ -22,6 +22,8 @@ if (empty($user) === FALSE)
 {
   $productModel = new ProductModel();
 
+  $category_list = ['smartphone', 'ordinateur', 'accessoir'];
+
   $productModel->reset();
   for($i=0; $i<50; $i++)
   {
@@ -29,7 +31,7 @@ if (empty($user) === FALSE)
 
     $name = RandomString(10);
     $reference = RandomString(10);
-    $category = RandomString(10);
+    $category = $category_list[rand(0, count($category_list)-1)];
     $price = rand(10, 1500);
 
     if (rand(0, 1) === 0)

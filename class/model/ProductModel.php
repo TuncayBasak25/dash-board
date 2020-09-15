@@ -37,7 +37,7 @@ class ProductModel extends DataBaseModel
     return $result;
   }
 
-  public function get_all_product_of($owner, $limit, $offset, $order = false)
+  public function get_all_product_of($owner, $limit, $offset, $order = false, $category = false)
   {
     $order_sql = "";
     if ($order !== FALSE && $order !== 'none')
@@ -45,15 +45,27 @@ class ProductModel extends DataBaseModel
       $order_sql = "ORDER BY $order";
     }
 
-    $sql = "SELECT * FROM $this->table WHERE owner = ? $order_sql LIMIT ? OFFSET ?";
+    $category_sql = "";
+    if ($category !== FALSE && $category !== 'all')
+    {
+      $category_sql = "AND category = '$category'";
+    }
+
+    $sql = "SELECT * FROM $this->table WHERE owner = ? $category_sql $order_sql LIMIT ? OFFSET ?";
     $product_list = $this->query($sql, $owner, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
 
     return $product_list;
   }
 
-  public function count_all_product_of($owner)
+  public function count_all_product_of($owner, $category = FALSE)
   {
-    $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ?";
+    $category_sql = "";
+    if ($category !== FALSE && $category !== 'all')
+    {
+      $category_sql = "AND category = '$category'";
+    }
+
+    $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ? $category_sql";
     $product_count = $this->query($sql, $owner)->fetch_assoc()['COUNT(*)'];
 
     return $product_count;

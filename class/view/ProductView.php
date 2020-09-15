@@ -10,6 +10,26 @@ class ProductView
   public static function table($product_list, $product_count, $current_page, $product_per_page, $order)
   {
     ?>
+    <div class="input-group mb-3">
+      <form id="product_table_page" onsubmit="formSubmit(this)" method="post"></form>
+      <input type="hidden" form="product_table_page" name="page" value="1">
+      <input type="hidden" form="product_table_page" name="max" value="<?= $product_per_page ?>">
+      <input type="hidden" form="product_table_page" name="order" value="<?= $order ?>">
+
+      <div class="col-3">
+        <select name="category" form="product_table_page" class="custom-select">
+          <option selected value="all">Category</option>
+          <option value="smartphone">Smartphone</option>
+          <option value="ordinateur">Ordinateur</option>
+          <option value="accessoir">Accessoir</option>
+        </select>
+      </div>
+
+
+
+      <button class="form-control" form="product_table_page" type="submit" name="button">Appliquer les filtres</button>
+    </div>
+
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
       <thead>
         <tr>
