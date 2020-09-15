@@ -38,7 +38,7 @@ function pie(json){
           }]
       },
       options: {
-          responsive: false
+          responsive: true
       }
   });
 

@@ -12,9 +12,9 @@ class ProductModel extends DataBaseModel
       ref VARCHAR(60) NOT NULL,
       category VARCHAR(60) NOT NULL,
       owner_manual TEXT,
-      purchase_date INT NOT NULL,
+      purchase_date DATE,
       price INT NOT NULL,
-      warranty INT,
+      warranty DATE,
       receipt TEXT,
       product_image MEDIUMBLOB
     )";
