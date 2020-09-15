@@ -45,7 +45,7 @@ class ProductModel extends DataBaseModel
     return $result;
   }
 
-  public function get_all_product_of($owner, $limit, $offset, $order = false, $category = false)
+  public function get_all_product_of($owner, $limit, $offset, $order = FALSE, $category = FALSE, $price = FALSE, $purchase_type = FALSE, $warrant_limit = FALSE)
   {
     $order_sql = "";
     if ($order !== FALSE && $order !== 'none')
@@ -56,24 +56,64 @@ class ProductModel extends DataBaseModel
     $category_sql = "";
     if ($category !== FALSE && $category !== 'all')
     {
-      $category_sql = "AND category = '$category'";
+      $category_sql = " AND category = '$category' ";
     }
 
-    $sql = "SELECT * FROM $this->table WHERE owner = ? $category_sql $order_sql LIMIT ? OFFSET ?";
+    $price_sql = "";
+    if ($price !== FALSE && $price !== 'all')
+    {
+      $price_sql = " AND price $price ";
+    }
+
+    $purchase_type_sql = "";
+    if ($purchase_type !== FALSE && $purchase_type !== 'all')
+    {
+      $purchase_type_sql = " AND purchase_type = '$purchase_type' ";
+    }
+
+    $warrant_limit_sql = "";
+    if ($warrant_limit !== FALSE && $warrant_limit !== 'all')
+    {
+      $warrant_limit_sql = " AND warrant_limit $warrant_limit ";
+    }
+
+    $test_sql = $category_sql . $price_sql . $purchase_type_sql . $warrant_limit_sql;
+
+    $sql = "SELECT * FROM $this->table WHERE owner = ? $test_sql $order_sql LIMIT ? OFFSET ?";
     $product_list = $this->query($sql, $owner, $limit, $offset)->fetch_all(MYSQLI_ASSOC);
 
     return $product_list;
   }
 
-  public function count_all_product_of($owner, $category = FALSE)
+  public function count_all_product_of($owner, $category = FALSE, $price = FALSE, $purchase_type = FALSE, $warrant_limit = FALSE)
   {
     $category_sql = "";
     if ($category !== FALSE && $category !== 'all')
     {
-      $category_sql = "AND category = '$category'";
+      $category_sql = " AND category = '$category' ";
     }
 
-    $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ? $category_sql";
+    $price_sql = "";
+    if ($price !== FALSE && $price !== 'all')
+    {
+      $price_sql = " AND price $price ";
+    }
+
+    $purchase_type_sql = "";
+    if ($purchase_type !== FALSE && $purchase_type !== 'all')
+    {
+      $purchase_type_sql = " AND purchase_type = '$purchase_type' ";
+    }
+
+    $warrant_limit_sql = "";
+    if ($warrant_limit !== FALSE && $warrant_limit !== 'all')
+    {
+      $warrant_limit_sql = " AND warrant_limit $warrant_limit ";
+    }
+
+    $test_sql = $category_sql . $price_sql . $purchase_type_sql . $warrant_limit_sql;
+
+    $sql = "SELECT COUNT(*) FROM $this->table WHERE owner = ? $test_sql";
     $product_count = $this->query($sql, $owner)->fetch_assoc()['COUNT(*)'];
 
     return $product_count;

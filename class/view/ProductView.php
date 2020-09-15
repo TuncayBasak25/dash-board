@@ -24,10 +24,44 @@ class ProductView
           <option value="accessoir">Accessoir</option>
         </select>
       </div>
-
-
-
-      <button class="form-control" form="product_table_page" type="submit" name="button">Appliquer les filtres</button>
+      <div class="col-3">
+        <select name="price" form="product_table_page" class="custom-select">
+          <option selected value="all">Prix</option>
+          <option value="< 50">&lsaquo; 50 €</option>
+          <option value="> 50 AND price < 500">50 € - 500 €</option>
+          <option value="> 500">&rsaquo; 500 €</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select name="purchase_type" form="product_table_page" class="custom-select">
+          <option selected value="all">Purchase type</option>
+          <option value="web">Web</option>
+          <option value="physic">Physic</option>
+        </select>
+      </div>
+      <?php
+      $one_year = date('Y-m-d H:i:s', time() + 365 * 24 * 3600);
+      $two_year = date('Y-m-d H:i:s', time() + 730 * 24 * 3600);
+      ?>
+      <div class="col-3">
+        <select name="warrant_limit" form="product_table_page" class="custom-select cursor-pointer-select">
+          <option class="cursor-pointer-select" selected value="all">Warrant limit</option>
+          <option value="<= '<?= $one_year ?>'">Less than one year</option>
+          <option value=">= '<?= $one_year ?>' AND warrant_limit <= '<?=$two_year ?>'">Between one and two year</option>
+          <option value=">= '<?= $two_year ?>'">More than two year</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group d-flex justify-content-center align-items-center">
+      <button class="form-control btn btn-primary col-4" form="product_table_page" type="submit" name="button">Appliquer les filtres</button>
+      <div class="col-2">
+        <select name="new_product_per_page" form="product_table_page" class="custom-select">
+          <option selected value="none">Limit</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
     </div>
 
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
