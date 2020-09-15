@@ -40,8 +40,11 @@ class RequestController
     }
     else if ($request === 'dashboard')
     {
-      // $reference = $input_list['reference'];
       $product_list = (new ProductModel)->get_all_product();
+      $data = (new ProductModel)->fetch_column('price');
+      $response['data'] = $data;
+      $label = (new ProductModel)->fetch_column('product_name');
+      $response['label'] = $label;
       ob_start();
       MainView::purchase_list($product_list);
       $response['main_section'] = ob_get_contents();

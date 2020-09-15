@@ -60,6 +60,15 @@ class ProductModel extends DataBaseModel
     return $result->fetch_all(MYSQLI_ASSOC);
   }
 
+  public function fetch_column($column){
+    $sql = "SELECT $column FROM $this->table";
+
+    $result = $this->query($sql);
+
+
+  return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
   public function get_product_photo($name)
   {
     $sql = "SELECT photo FROM $this->table WHERE name = ?";

@@ -55,7 +55,7 @@ function defaultAjaxCallBack()
     if (elm !== null) elm.innerHTML = html;
   }
 
-  if (typeof this.callBack === 'function') this.callBack();
+  if (typeof this.callBack === 'function') this.callBack(json);
 }
 
 function errorLog(errorHtml)

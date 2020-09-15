@@ -12,7 +12,6 @@
         <td><?= $product['price'] ?></td>
       </tr>
     <?php
-    $data[] = $product['price'];
     }
     ?>
     </tbody>
