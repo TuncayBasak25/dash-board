@@ -8,15 +8,18 @@
       <tr>
         <th scope="row"><?= $product['product_name'] ?></th>
         <td><?= $product['ref'] ?></td>
-        <td><?= $product['id'] ?></td>
-        <td><?= $product['price'] ?></td>
+        <td><?= $product['warranty'] ?></td>
+        <td><?= $product['price'] ?>€</td>
       </tr>
     <?php
     }
     ?>
     </tbody>
   </table>
-  <canvas id="myChart" width="400px" height="400px"></canvas>
+  <div class="col">
+    <h3>Graphique comparatif des prix:</h3>
+    <canvas id="myChart"></canvas>
+  </div>
      <?php
    }
  }

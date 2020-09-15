@@ -7,9 +7,9 @@ function pie(json){
 
   let label = [];
   json.label.forEach((item, i) => {
-      label.push(item.label);
+      label.push(item.product_name);
   });
-console.log(label);
+
   var ctx = document.getElementById('myChart').getContext('2d');
 
   var myChart = new Chart(ctx, {
@@ -38,13 +38,7 @@ console.log(label);
           }]
       },
       options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
+          responsive: false
       }
   });
 
