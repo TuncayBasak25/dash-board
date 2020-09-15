@@ -28,6 +28,14 @@ class ProductModel extends DataBaseModel
     $this->init_data_base();
   }
 
+  public function fetch_column($column){
+    $sql = "SELECT $column FROM $this->table";
+
+    $result = $this->query($sql);
+
+  return $result->fetch_all(MYSQLI_ASSOC);
+  }
+
   public function add_product($owner, $name, $reference, $category, $price, $purchase_type, $purchase_adress, $purchase_url, $purchase_date, $warrant_limit, $manual = '')
   {
     $sql = "INSERT INTO $this->table (owner, name, reference, category, price, purchase_type, purchase_adress, purchase_url, purchase_date, warrant_limit, manual) VALUES (?,?,?,?,?,?,?,?,?,?,?)";

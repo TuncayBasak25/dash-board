@@ -132,6 +132,9 @@ class ProductView
     <?php
 
     ProductView::pagination($product_per_page, $product_count, $current_page, $order);
+    ?>
+    <canvas id="myChart"></canvas>
+    <?php
   }
 
   public static function row($product)
