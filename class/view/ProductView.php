@@ -273,4 +273,9 @@ class ProductView
     </nav>
     <?php
   }
+
+  public static function add_product()
+  {
+    
+  }
 }

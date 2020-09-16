@@ -6,6 +6,10 @@ class RequestController
   {
     if ($request === 'first_load')
     {
+      unset($_SESSION['category']);
+      unset($_SESSION['price']);
+      unset($_SESSION['purchase_date']);
+      unset($_SESSION['warrant_limit']);
       $user = (new UserModel)->get_logged_user();
       if (empty($user) === TRUE)
       {
