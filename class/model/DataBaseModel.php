@@ -6,11 +6,11 @@ abstract class DataBaseModel
   private $server = 'localhost';
   private $user = 'root';
   private $password = '';
+  private $data_base = 'dash_board_tuncay';
 
   private $conn;
   private $error;
 
-  protected $data_base;
   protected $table;
   protected $table_columns;
 
@@ -70,6 +70,8 @@ abstract class DataBaseModel
   }
 
   protected function queryBlob($sql, $blob, ...$testers) {
+    $this->connect();
+
     $types = "b";
 
     foreach ($testers as $tester) {
@@ -138,6 +140,12 @@ abstract class DataBaseModel
     return TRUE;
   }
 
+  protected function init_data_base() {
+    $this->createDataBase();
+
+    $this->createTable();
+  }
+
   protected function createDataBase()
   {
     $this->conn = new mysqli($this->server, $this->user, $this->password);
@@ -193,6 +201,8 @@ abstract class DataBaseModel
 
   protected function createTable()
   {
+    $this->connect();
+
     $sql = "CREATE TABLE IF NOT EXISTS $this->table $this->table_columns";
 
     if ($this->conn->query($sql) === FALSE) {
@@ -206,6 +216,8 @@ abstract class DataBaseModel
 
   protected function resetTable()
   {
+    $this->connect();
+
     $sql = "DROP TABLE IF EXISTS $this->table";
 
     if ($this->conn->query($sql) === FALSE) {
@@ -227,6 +239,8 @@ abstract class DataBaseModel
 
   protected function deleteTable()
   {
+    $this->connect();
+
     $sql = "DROP TABLE IF EXISTS $this->table";
 
     if ($this->conn->query($sql) === FALSE) {
